@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ category.name }}</h1>
+
+<p>{{ category.description }}</p>
+
+<h2>Workshops in this category:</h2>
+<ul>
+  {% for workshop in category.allworkshop_set.all %}
+    <li>{{ workshop.title }}</li>
+  {% empty %}
+    <li>No workshops found in this category.</li>
+  {% endfor %}
+</ul>
+{% endblock content %}

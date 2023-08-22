@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Search results for: {{ query }}{% endblock %}
+{% block content %}
+
+<div class="container">
+
+<h3 class="mt-2 text-center text-secondary">Search Results for "{{ query }}"</h3>
+
+{% if workshops %}
+  <ul>
+    {% for workshop in workshops %}
+
+    				<div class="card border mt-2">
+					<div class="card-header border-bottom">
+						<!-- Card START -->
+						<div class="card" style="">
+							<div class="row g-0">
+								<div class="col-md-3">
+									<img src="{{workshop.image.url}}" class="rounded-2" alt="Card image">
+								</div>
+								<div class="col-md-9">
+									<div class="card-body">
+										<!-- Title -->
+										<h3 class="card-title"><a href="{% url 'workshop_detail' workshop.id %}">{{ workshop.title }}</a></h3>
+
+										<!-- Info -->
+										<ul class="list-inline mb-2">
+											<li class="list-inline-item h6 fw-light mb-1 mb-sm-0"><i class="far fa-clock text-danger me-2"></i>{{workshop.duration}}</li>
+											<li class="list-inline-item h6 fw-light mb-1 mb-sm-0"><i class="fas fa-light fa-boxes-stacked text-orange me-2"></i>{{workshop.category}}</li>
+											<li class="list-inline-item h6 fw-light"><i class="fas fa-sharp fa-light fa-indian-rupee-sign"></i>{{workshop.new_price}}</li>
+                                            <p>{{workshop.description}}</p>
+										</ul>
+
+										<!-- button -->
+										<a href="{% url 'register_workshop' workshop.id %}" class="btn btn-primary-soft btn-sm mb-0">Register</a>
+									</div>
+								</div>
+							</div>
+						</div>
+                    </div>
+						<!-- Card END -->
+					</div>
+    {% endfor %}
+  </ul>
+
+  {% else %}
+  <p class="mt-2 text-center text-secondary">No workshops found matching your search query.</p>
+{% endif %}
+</div>
+{% endblock content %}

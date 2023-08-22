@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Create Workshop{% endblock %}
+{% block content %}
+
+<!-- create_workshop.html -->
+
+    <h1>Create Workshop</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+
+
+
+{% endblock %}
